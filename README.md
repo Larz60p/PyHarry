@@ -42,7 +42,3 @@ That code is a bit interesting.
 Hope you find it useful.
 
 Larry McCaig - Larz60+
-
-screenshots:
-![Doc Screen](/relative/doc.png?raw=true "Documentation Screen")
-![Src Screen](/relative/src.png?raw=true "Source Code Screen")
