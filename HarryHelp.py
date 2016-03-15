@@ -135,7 +135,7 @@ class HarryHelp():
         return self.modules
 
     def getLicense(self):
-        with open('COPYING', 'r') as f:
+        with open('LICENSE', 'r') as f:
             License = f.read()
         return License
 
