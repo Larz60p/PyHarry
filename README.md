@@ -3,6 +3,13 @@ Python Local Reference - 'Harry the helper'
 
 Here's the first release of something I call PyHarry - Harry, Someone always ready to help!
 
+Screenshots:
+Documentation Screen:
+![Documentation Screen](https://github.com/Larz60p/PyHarry/edit/master/Doc.png "Documentation Screen")
+
+Source Code Screen:
+![Source Code Screen](https://github.com/Larz60p/PyHarry/edit/master/src.png "Source Code Screen")
+
 It's a simple documentation system for Python, help is included your own code (if it's in the
 python path, or if you start it up in your working directory).
 
