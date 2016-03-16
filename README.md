@@ -8,7 +8,7 @@ Documentation Screen:
 ![ScreenShot1](Doc.png)
 
 Source Code Screen:
-![ScreenShot1](src.png)
+![ScreenShot2](src.png)
 
 It's a simple documentation system for Python, help is included your own code (if it's in the
 python path, or if you start it up in your working directory).
