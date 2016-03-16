@@ -4,10 +4,13 @@ Python Local Reference - 'Harry the helper'
 Here's the first release of something I call PyHarry - Harry, Someone always ready to help!
 
 Screenshots:
+
 Documentation Screen:
+
 ![ScreenShot1](Doc.png)
 
 Source Code Screen:
+
 ![ScreenShot2](src.png)
 
 It's a simple documentation system for Python, help is included your own code (if it's in the
