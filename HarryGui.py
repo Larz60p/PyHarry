@@ -32,6 +32,7 @@ class HarryGui(tk.Frame):
         self.treeframe = None
         self.textframe = None
         self.tree = None
+        self.entered_item = tk.StringVar()
 
         self.doc_win = None
         self.src_win = None
@@ -137,7 +138,6 @@ class HarryGui(tk.Frame):
         tree_height = textrows + 3
         self.treeframe = tk.Frame(self, relief=tk.RAISED)
         self.treeframe.grid(row=x, rowspan=textrows, column=y, sticky='nsw')
-        # print('x: {}, y: {}'.format(x, y))
         self.tree = ttk.Treeview(self.treeframe, height=tree_height)
         self.tree.grid(row=0, rowspan=textrows, column=0, columnspan=2, sticky='nsw')
 
@@ -210,14 +210,31 @@ class HarryGui(tk.Frame):
     def add_bottom_frame(self, x, y):
         f2 = tk.Frame(self, relief=tk.FLAT)
         f2.grid(row=x, column=y, columnspan=self.width, sticky='nsew')
+
         quit_app = tk.Button(f2, text='Quit', command=self.quit)
         quit_app.grid(row=0, column=0, sticky='w')
 
         l2 = tk.Label(f2, text="Author - Larz60+ - 2016")
         l2.grid(row=0, column=1, sticky='w')
+
+        e1 = tk.Entry(f2, textvariable=self.entered_item, relief=tk.SUNKEN)
+        e1.grid(row=0, column=2)
+
+        l3 = tk.Label(f2, text="Use entry to 'Drill down' \ex: tkinter.Button")
+        l3.grid(row=0, column=3, sticky='w')
+
+        l4 = tk.Label(f2, text='  ')
+        l4.grid(row=0, column=4, sticky='w')
+
+        get_doc_btn = tk.Button(f2, text='Get Doc', command=self.button_get_doc)
+        get_doc_btn.grid(row=0, column=5, padx=2, pady=2, sticky='w')
+
         # x += 1
         # y = 0
         # return x, y
+
+    def button_get_doc(self):
+        self.item_selected(self, alt_item=self.entered_item.get())
 
     @staticmethod
     def hide_txtwin(win, scroll):
@@ -253,29 +270,34 @@ class HarryGui(tk.Frame):
             for item in self.value_matrix:
                 self.tree.insert('', 'end', text=item, open=False)
 
-    def item_selected(self, event):
+    def item_selected(self, event, alt_item=None):
         # code inspect will give error on event as unused
         # ... Don't remove it it's used under the covers
         # if you do, system will crash
         self.hide_txtwin(self.src_win, self.src_yscroll)
-        curitem = self.tree.focus()
-        x = self.tree.item(curitem)
 
-        self.hlp.getHelp(x['text'])
+        if alt_item is None:
+            curitem = self.tree.focus()
+            x = self.tree.item(curitem)
+            target = x['text']
+        else:
+            target = alt_item
+        self.hlp.getHelp(target)
+
         self.doc_win.delete('1.0', tk.END)
         self.doc_win.tag_configure('tag-center', justify='center')
         if self.hlp.mhelp is not None:
             # Insert Title as first line
-            self.doc_win.insert('end', 'Documentation for {}\n\n'.format(x['text']), 'tag-center')
+            self.doc_win.insert('end', 'Documentation for {}\n\n'.format(target), 'tag-center')
             self.doc_win.insert(tk.END, self.hlp.mhelp)
         else:
             # Insert Title as first line
-            self.doc_win.insert('end', 'Documentation not available for {}\n\n'.format(x['text']), 'tag-center')
+            self.doc_win.insert('end', 'Documentation not available for {}\n\n'.format(target), 'tag-center')
         self.src_win.delete('1.0', tk.END)
-        self.hlp.getSource(x['text'])
+        self.hlp.getSource(target)
         self.src_win.tag_configure('tag-center', justify='center')
         if self.hlp.source is not None:
-            self.src_win.insert('end', 'Source Code for {}\n\n'.format(x['text']), 'tag-center')
+            self.src_win.insert('end', 'Source Code for {}\n\n'.format(target), 'tag-center')
             self.src_win.insert(tk.END, self.hlp.source)
         else:
-            self.src_win.insert('end', 'Source Code not available for {}\n\n'.format(x['text']), 'tag-center')
+            self.src_win.insert('end', 'Source Code not available for {}\n\n'.format(target), 'tag-center')
