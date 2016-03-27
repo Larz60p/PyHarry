@@ -1,5 +1,5 @@
 # PyHarry
-Python Local Reference - 'Harry the helper'
+Local Python Reference - 'Harry the helper'
 
 Here's the first release of something I call PyHarry - Harry, Someone always ready to help!
 
