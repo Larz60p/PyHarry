@@ -3,6 +3,9 @@ Local Python Reference - 'Harry the helper'
 
 Here's the first release of something I call PyHarry - Harry, Someone always ready to help!
 
+It's a reference for all of the python packages that are in your python path, and for your own
+code (if in the python path, or if it's started in your current workspace)
+
 Screenshots:
 
 Documentation Screen:
@@ -12,9 +15,6 @@ Documentation Screen:
 Source Code Screen:
 
 ![ScreenShot2](src.png)
-
-It's a simple documentation system for Python, help is included your own code (if it's in the
-python path, or if you start it up in your working directory).
 
 If you import new packages into your system, they will show up in the menus.
 
